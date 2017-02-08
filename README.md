@@ -7,6 +7,8 @@ Set JVM argument for tomcat: -Djava.security.auth.login.config=$CATALINA_BASE/co
 
 jaas-fedfeu.config:
 
-'FedfeuLogin {
+```
+FedfeuLogin {
     com.fedfeu.jaas.FedfeuLoginModule required debug=true;
-};'
+};
+```
