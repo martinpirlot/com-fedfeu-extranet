@@ -1,0 +1,30 @@
+.navbar-fixed-top {
+	top: 0;
+	border-width: 0 0 1px;
+	z-index: 300;
+}
+
+@media ( max-width : 700px) {
+	.header-search {
+		display: none;
+	}
+}
+
+.navbar-default .navbar-nav #user-profile {
+	height: 50px;
+	padding-top: 15px;
+	padding-left: 58px;
+}
+
+.navbar-default .navbar-nav #user-profile img {
+	height: 45px;
+	width: 45px;
+	position: absolute;
+	top: 2px;
+	left: 8px;
+	padding: 1px;
+}
+
+.page-title {
+	color: #444! important;
+}

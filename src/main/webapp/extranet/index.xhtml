@@ -1,0 +1,30 @@
+<ui:composition template="/WEB-INF/templates/pageTemplate.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <ui:define name="content">
+    	<div class="contentHeader">
+    		
+        	<span>Salut #{userSessionController.userName}!</span><br/><br/>
+			<h:outputLink value="index.xhtml">
+				<button type="button" class="btn btn-success">Ajouter un
+					membre</button>
+			</h:outputLink> 
+			<h:outputLink value="index.xhtml">
+				<button type="button" class="btn btn-success">Ajouter un
+					club</button>
+			</h:outputLink> 
+			<h:outputLink value="index.xhtml">
+				<button type="button" class="btn btn-success">Ajouter une
+					compétition</button>
+			</h:outputLink>
+		</div>
+		<div class="contentIndex">
+		</div>
+		<div class="contentFooter">
+		</div>
+    </ui:define>
+</ui:composition>

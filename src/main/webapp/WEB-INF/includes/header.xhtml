@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<h:outputText value="Fedfeu Extranet" class="navbar-brand page-title"></h:outputText>
+			</div>
+			<div id="navbar-collapse" class="collapse navbar-collapse">
+				<form class="navbar-form navbar-left header-search" role="search">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Rechercher un membre" /><span
+							class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</button>
+						</span>
+					</div>
+				</form>
+				<ul class="nav navbar-nav navbar-right">
+					<!-- <li class="dropdown"><a id="flag" href="#"
+						class="dropdown-toggle" data-toggle="dropdown"> <img
+							src="http://www.country-dialing-codes.net/img/png-country-4x2-fancy-res-1280x960/gb.png"
+							alt="English" width="28px" height="18px"></a>
+						<ul class="dropdown-menu dropdown-menu-flag" role="menu">
+							<li><a href="#"> <img
+									src="http://www.country-dialing-codes.net/img/png-country-4x2-flat-res-640x480/gf.png"
+									alt="Français" width="28px" height="18px"><span>Français</span>
+							</a></li>
+						</ul></li> -->
+					<li class="dropdown"><a id="user-profile" href="#"
+						class="dropdown-toggle" data-toggle="dropdown"><h:graphicImage name="images/fedfeu.png" class="img-responsive img-thumbnail img-circle" /> #{userSessionController.userName}</a>
+						<ul class="dropdown-menu dropdown-block" role="menu">
+							<li><a href="#">Profil</a></li>
+							<li><a href="#{homePageController.contextPath}/logout">Déconnexion</a></li>
+						</ul></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</ui:composition>

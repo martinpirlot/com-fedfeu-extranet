@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<title>Fedfeu Extranet - Login</title>
+	<link rel="stylesheet" type="text/css"
+		href="#{request.contextPath}/resources/css/bootstrap.css" />
+	<h:outputStylesheet name="css/login.css" />
+</h:head>
+<h:body>
+	<div class="container">
+		<div class="card card-container">
+			<h:outputText value="Fedfeu Extranet" class="profile-title"></h:outputText>
+			<h:graphicImage name="images/fedfeu.png" id="profile-img"
+				class="profile-img-card" />
+			<p id="profile-name" class="profile-name-card"></p>
+			<form class="form-signin" method="post" action="j_security_check">
+				<ui:insert name="loginContent">Login is disabled.</ui:insert>
+			</form>
+		</div>
+	</div>
+	<h:outputScript name="js/jquery-3.1.1.min.js" />
+	<h:outputScript name="js/bootstrap.min.js" />
+</h:body>
+</html>

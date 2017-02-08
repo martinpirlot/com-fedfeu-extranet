@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context>
+	<Realm className="org.apache.catalina.realm.JAASRealm" appName="FedfeuLogin"
+		userClassNames="com.fedfeu.jaas.UserPrincipal" roleClassNames="com.fedfeu.jaas.RolePrincipal" />
+</Context>
