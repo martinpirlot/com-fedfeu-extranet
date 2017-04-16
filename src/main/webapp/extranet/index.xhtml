@@ -9,17 +9,14 @@
     	<div class="contentHeader">
     		
         	<span>Salut #{userSessionController.userName}!</span><br/><br/>
-			<h:outputLink value="index.xhtml">
-				<button type="button" class="btn btn-success">Ajouter un
-					membre</button>
-			</h:outputLink> 
-			<h:outputLink value="index.xhtml">
-				<button type="button" class="btn btn-success">Ajouter un
-					club</button>
-			</h:outputLink> 
-			<h:outputLink value="index.xhtml">
-				<button type="button" class="btn btn-success">Ajouter une
-					compétition</button>
+			<h:outputLink value="#{request.contextPath}/admin/addMember.xhtml" class="btn btn-success">
+				Ajouter un membre
+			</h:outputLink> - 
+			<h:outputLink value="#{request.contextPath}/admin/addClub.xhtml" class="btn btn-success">
+				Ajouter un club
+			</h:outputLink> - 
+			<h:outputLink value="#{request.contextPath}/admin/addCup.xhtml" class="btn btn-success">
+				Ajouter une compétition
 			</h:outputLink>
 		</div>
 		<div class="contentIndex">

@@ -20,6 +20,10 @@ public class HomePageController implements Serializable {
 		return externalContext.getApplicationContextPath();
 	}
 	
+	public String getRequestContextPath() {
+		return externalContext.getRequestContextPath();
+	}
+	
 	@PostConstruct
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();

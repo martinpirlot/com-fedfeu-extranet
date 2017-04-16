@@ -7,18 +7,16 @@
 
 	<ui:define name="content">
 		<div class="contentHeader">
-			<h:outputLink value="index.xhtml">
-				<button type="button" class="btn btn-success">Ajouter une
-					compétition</button>
+			<h:outputLink value="#{request.contextPath}/admin/addCup.xhtml" class="btn btn-success">
+				Ajouter une compétition
 			</h:outputLink>
 		</div>
 		<div class="contentTable">
 			<ui:include src="/WEB-INF/includes/dataTableCups.xhtml" />
 		</div>
 		<div class="contentFooter">
-			<h:outputLink value="index.xhtml">
-				<button type="button" class="btn btn-success">Ajouter une
-					compétition</button>
+			<h:outputLink value="#{request.contextPath}/admin/addCup.xhtml" class="btn btn-success">
+				Ajouter une compétition
 			</h:outputLink>
 		</div>
 	</ui:define>

@@ -7,18 +7,16 @@
 
 	<ui:define name="content">
 		<div class="contentHeader">
-			<h:outputLink value="index.xhtml">
-				<button type="button" class="btn btn-success">Ajouter un
-					membre</button>
+			<h:outputLink value="#{request.contextPath}/admin/addMember.xhtml" class="btn btn-success">
+				Ajouter un membre
 			</h:outputLink>
 		</div>
 		<div class="contentTable">
 			<ui:include src="/WEB-INF/includes/dataTableMembers.xhtml" />
 		</div>
 		<div class="contentFooter">
-			<h:outputLink value="index.xhtml">
-				<button type="button" class="btn btn-success">Ajouter un
-					membre</button>
+			<h:outputLink value="#{request.contextPath}/admin/addMember.xhtml" class="btn btn-success">
+				Ajouter un membre
 			</h:outputLink>
 		</div>
 	</ui:define>
