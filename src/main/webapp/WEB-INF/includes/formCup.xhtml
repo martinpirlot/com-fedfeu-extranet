@@ -1,0 +1,95 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<div class="form-group">
+		<label for="name" class="col-sm-3 control-label">Nom</label>
+		<div class="col-sm-9">
+			<input type="text" id="name" placeholder="Nom"
+				value="#{cupController.name}" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="startDate" class="col-sm-3 control-label">Date de
+			début</label>
+		<div class="col-sm-9">
+			<input type="date" id="startDate" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="endDate" class="col-sm-3 control-label">Date de
+			fin</label>
+		<div class="col-sm-9">
+			<input type="date" id="endDate" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="club" class="col-sm-3 control-label">Club</label>
+		<div class="col-sm-9">
+			<select id="club" class="form-control">
+				<option>Club 1</option>
+				<option>Club 2</option>
+				<option>Club 3</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-3">Hauteur</label>
+		<div class="col-sm-6">
+			<div class="row">
+				<div class="col-sm-4">
+					<label class="radio-inline"> <input type="radio"
+						id="heightYesRadio" name="height" value="yes" checked="checked" />Oui
+					</label>
+				</div>
+				<div class="col-sm-4">
+					<label class="radio-inline"> <input type="radio"
+						id="heightNoRadio" name="height" value="no" />Non
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-3">Triple Saut</label>
+		<div class="col-sm-6">
+			<div class="row">
+				<div class="col-sm-4">
+					<label class="radio-inline"> <input type="radio"
+						id="tripleJumpYesRadio" name="tripleJump" value="yes"
+						checked="checked" />Oui
+					</label>
+				</div>
+				<div class="col-sm-4">
+					<label class="radio-inline"> <input type="radio"
+						id="tripleJumpNoRadio" name="tripleJump" value="no" />Non
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-sm-3">Freestyle Street</label>
+		<div class="col-sm-6">
+			<div class="row">
+				<div class="col-sm-4">
+					<label class="radio-inline"> <input type="radio"
+						id="freestyleStreetYesRadio" name="freestyleStreet" value="yes"
+						checked="checked" />Oui
+					</label>
+				</div>
+				<div class="col-sm-4">
+					<label class="radio-inline"> <input type="radio"
+						id="freestyleStreetNoRadio" name="freestyleStreet" value="no" />Non
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-9 col-sm-offset-3">
+			<button type="submit" class="btn btn-primary btn-block addButton">Valider</button>
+		</div>
+	</div>
+</ui:composition>

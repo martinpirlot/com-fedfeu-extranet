@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<div class="form-group">
+		<label for="name" class="col-sm-3 control-label">Nom</label>
+		<div class="col-sm-9">
+			<input type="text" id="name" placeholder="Nom"
+				value="#{clubController.name}" class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="president" class="col-sm-3 control-label">Président</label>
+		<div class="col-sm-9">
+			<select id="president" class="form-control">
+				<option>Prénom Nom 1</option>
+				<option>Prénom Nom 2</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="website" class="col-sm-3 control-label">Site web</label>
+		<div class="col-sm-9">
+			<input type="text" id="website" placeholder="http://"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="email" class="col-sm-3 control-label">Email de
+			contact</label>
+		<div class="col-sm-9">
+			<input type="email" id="email" placeholder="Email"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-9 col-sm-offset-3">
+			<button type="submit" class="btn btn-primary btn-block addButton">Valider</button>
+		</div>
+	</div>
+</ui:composition>
