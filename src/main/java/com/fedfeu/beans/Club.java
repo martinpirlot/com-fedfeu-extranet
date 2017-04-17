@@ -1,24 +1,27 @@
 package com.fedfeu.beans;
 
-public class Club {
+import java.io.Serializable;
+
+public class Club implements Serializable {
+	private static final long serialVersionUID = 917043626784298073L;
+	
 	private String id;
 	private String name;
 	private String website;
-	private String president;
+	private Member president;
 	private String mailContact;
 	private Address address;
 
 	public Club() {
-		this.id = null;
-		this.name = null;
-		this.website = null;
-		this.president = null;
-		this.mailContact = null;
-		this.address = null;
+		this.id = "";
+		this.name = "";
+		this.website = "";
+		this.president = new Member();
+		this.mailContact = "";
+		this.address = new Address();
 	}
 	
-	public Club(String id, String name, String website, String president, String mailContact, Address address) {
-		super();
+	public Club(String id, String name, String website, Member president, String mailContact, Address address) {
 		this.id = id;
 		this.name = name;
 		this.website = website;
@@ -51,11 +54,11 @@ public class Club {
 		this.website = website;
 	}
 
-	public String getPresident() {
+	public Member getPresident() {
 		return president;
 	}
 
-	public void setPresident(String president) {
+	public void setPresident(Member president) {
 		this.president = president;
 	}
 

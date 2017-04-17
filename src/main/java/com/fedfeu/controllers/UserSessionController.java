@@ -11,8 +11,8 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped
 public class UserSessionController implements Serializable {
-	private static final long serialVersionUID = -7500516416605360397L;
-
+	private static final long serialVersionUID = 6222608349626082143L;
+	
 	private String userName;
 	private FacesContext facesContext;
 	private ExternalContext externalContext;

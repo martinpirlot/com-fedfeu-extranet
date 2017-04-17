@@ -35,13 +35,13 @@ public class MySQLDatabase {
 		}
 	}
 
-	public static Member getMember(int id) {
+	public static Member getMember(String id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Member member = null;
 		try {
 			ps = getConnection().prepareStatement("SELECT * FROM Members WHERE id = ?");
-			ps.setInt(1, id);
+			ps.setString(1, id);
 
 			rs = ps.executeQuery();
 
@@ -117,13 +117,13 @@ public class MySQLDatabase {
 		return result;
 	}
 
-	public static Club getClub(int id) {
+	public static Club getClub(String id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Club club = null;
 		try {
 			ps = getConnection().prepareStatement("SELECT * FROM Clubs WHERE id = ?");
-			ps.setInt(1, id);
+			ps.setString(1, id);
 
 			rs = ps.executeQuery();
 
@@ -199,13 +199,13 @@ public class MySQLDatabase {
 		return result;
 	}
 
-	public static Cup getCup(int id) {
+	public static Cup getCup(String id) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Cup cup = null;
 		try {
 			ps = getConnection().prepareStatement("SELECT * FROM Cups WHERE id = ?");
-			ps.setInt(1, id);
+			ps.setString(1, id);
 
 			rs = ps.executeQuery();
 
@@ -242,7 +242,7 @@ public class MySQLDatabase {
 				
 				cupList.add(cup);
 			}
-		} catch (SQLException e) {
+		} catch (SQLException | NullPointerException e) {
 			e.printStackTrace();
 		} finally {
 			try {

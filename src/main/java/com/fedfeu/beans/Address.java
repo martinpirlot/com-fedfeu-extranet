@@ -1,13 +1,23 @@
 package com.fedfeu.beans;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
+	private static final long serialVersionUID = 5452721881117379577L;
+	
 	private String street;
-	private int postalCode;
+	private String postalCode;
 	private String city;
 	private String country;
 	
-	public Address(String street, int postalCode, String city, String country) {
-		super();
+	public Address() {
+		this.street = "";
+		this.postalCode = "";
+		this.city = "";
+		this.country = "";
+	}
+	
+	public Address(String street, String postalCode, String city, String country) {
 		this.street = street;
 		this.postalCode = postalCode;
 		this.city = city;
@@ -22,11 +32,11 @@ public class Address {
 		this.street = street;
 	}
 	
-	public int getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 	
-	public void setPostalCode(int postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 	
@@ -44,5 +54,10 @@ public class Address {
 	
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	
+	@Override
+	public String toString() {
+		return getStreet() + "," + getPostalCode() + " " + getCity();
 	}
 }

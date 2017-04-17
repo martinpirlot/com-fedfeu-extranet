@@ -1,35 +1,39 @@
 package com.fedfeu.beans;
 
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Cup {
+public class Cup implements Serializable {
+	private static final long serialVersionUID = 4137193302406822645L;
+	
 	private String id;
 	private String name;
 	private Date startDate;
 	private Date endDate;
 	private Address address;
-	private String club;
-	private List<String> type;
+	private Club club;
+	private List<String> typeList;
 	
 	public Cup() {
-		this.id = null;
-		this.name = null;
+		this.id = "";
+		this.name = "";
 		this.startDate = null;
 		this.endDate = null;
-		this.address = null;
-		this.club = null;
-		this.type = null;
+		this.address = new Address();
+		this.club = new Club();
+		this.typeList = new ArrayList<String>();
 	}
 	
-	public Cup(String id, String name, Date startDate, Date endDate, Address address, String club, List<String> type) {
+	public Cup(String id, String name, Date startDate, Date endDate, Address address, Club club, List<String> typeList) {
 		this.id = id;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.address = address;
 		this.club = club;
-		this.type = type;
+		this.typeList = typeList;
 	}
 
 	public String getId() {
@@ -72,19 +76,32 @@ public class Cup {
 		this.endDate = endDate;
 	}
 
-	public String getClub() {
+	public Club getClub() {
 		return club;
 	}
 
-	public void setClub(String club) {
+	public void setClub(Club club) {
 		this.club = club;
 	}
 
-	public List<String> getType() {
-		return type;
+	public List<String> getTypeList() {
+		return typeList;
+	}
+	
+	public String getTypeListString() {
+		StringBuilder sb = new StringBuilder();
+		List<String> typeList = getTypeList();
+		for(String type : typeList) {
+			sb.append(type + ", ");
+		}
+		
+		if(!typeList.isEmpty())
+			sb.setLength(sb.length() - 2);
+		
+		return sb.toString();
 	}
 
-	public void setType(List<String> type) {
-		this.type = type;
+	public void setType(List<String> typeList) {
+		this.typeList = typeList;
 	}
 }

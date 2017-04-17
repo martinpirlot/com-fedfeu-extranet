@@ -13,14 +13,14 @@
 	<div class="form-group">
 		<label for="lastName" class="col-sm-3 control-label">Nom</label>
 		<div class="col-sm-9">
-			<input type="text" id="lastName" placeholder="Nom"
+			<input type="text" id="lastName" placeholder="Nom" value="#{memberController.lastName}"
 				class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="email" class="col-sm-3 control-label">Email</label>
 		<div class="col-sm-9">
-			<input type="email" id="email" placeholder="Email"
+			<input type="email" id="email" placeholder="Email" value="#{memberController.firstName}"
 				class="form-control" />
 		</div>
 	</div>
@@ -28,25 +28,20 @@
 		<label for="birthDate" class="col-sm-3 control-label">Date de
 			naissance</label>
 		<div class="col-sm-9">
-			<input type="date" id="birthDate" class="form-control" />
+			<input type="date" id="birthDate" class="form-control" value="#{memberController.birthDate}" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="country" class="col-sm-3 control-label">Pays</label>
+		<label for="address" class="col-sm-3 control-label">Adresse</label>
 		<div class="col-sm-9">
-			<select id="country" class="form-control">
-				<option>Allemagne</option>
-				<option>Belgique</option>
-				<option selected="selected">France</option>
-				<option>République tchèque</option>
-				<option>Russie</option>
-			</select>
+			<input type="text" id="address" placeholder="Adresse" value="#{memberController.address}"
+				class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="phone" class="col-sm-3 control-label">Téléphone</label>
 		<div class="col-sm-9">
-			<input type="text" id="phone" placeholder="+33123456789"
+			<input type="text" id="phone" placeholder="+33123456789" value="#{memberController.phone}"
 				class="form-control" />
 		</div>
 	</div>
@@ -73,7 +68,7 @@
 		<div class="col-sm-9">
 			<select id="club" class="form-control">
 				<option>Staff</option>
-				<option>Club 1</option>
+				<option selected="selected">#{memberController.club.name}</option>
 				<option>Club 2</option>
 				<option>Club 3</option>
 			</select>

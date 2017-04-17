@@ -11,7 +11,7 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @SessionScoped	
 public class HomePageController implements Serializable {
-	private static final long serialVersionUID = -7500516416605360397L;
+	private static final long serialVersionUID = 3029415546214855090L;
 	
 	private FacesContext facesContext;
 	private ExternalContext externalContext;

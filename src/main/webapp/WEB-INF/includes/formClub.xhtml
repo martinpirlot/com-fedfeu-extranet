@@ -14,7 +14,7 @@
 		<label for="president" class="col-sm-3 control-label">Président</label>
 		<div class="col-sm-9">
 			<select id="president" class="form-control">
-				<option>Prénom Nom 1</option>
+				<option>#{clubController.president}</option>
 				<option>Prénom Nom 2</option>
 			</select>
 		</div>
@@ -22,7 +22,7 @@
 	<div class="form-group">
 		<label for="website" class="col-sm-3 control-label">Site web</label>
 		<div class="col-sm-9">
-			<input type="text" id="website" placeholder="http://"
+			<input type="text" id="website" placeholder="http://" value="#{clubController.website}"
 				class="form-control" />
 		</div>
 	</div>
@@ -30,7 +30,7 @@
 		<label for="email" class="col-sm-3 control-label">Email de
 			contact</label>
 		<div class="col-sm-9">
-			<input type="email" id="email" placeholder="Email"
+			<input type="email" id="email" placeholder="Email" value="#{clubController.mailContact}"
 				class="form-control" />
 		</div>
 	</div>

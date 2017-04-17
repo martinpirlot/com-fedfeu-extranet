@@ -27,17 +27,17 @@
 			</tr>
 		</tfoot>
 		<tbody>
-			<c:forEach var="i" begin="1" end="15">
+			<c:forEach items="#{dataListController.cupList}" var="cup">
 				<tr>
-					<td>Nancy Power Days</td>
-					<td>Easyriser</td>
-					<td>Nancy</td>
-					<td>2017-05-06</td>
-					<td>2017-05-07</td>
-					<td>Hauteur, Triple saut, Freestyle street</td>
+					<td>#{cup.name}</td>
+					<td>#{cup.club.name}</td>
+					<td>#{cup.address}</td>
+					<td>#{cup.startDate}</td>
+					<td>#{cup.endDate}</td>
+					<td>#{cup.typeListString}</td>
 					<td>
 						<p data-placement="top" data-toggle="tooltip" title="Edit">
-							<h:outputLink value="#{request.contextPath}/admin/modifyCup.xhtml" class="btn btn-primary btn-xs" data-title="Modifier"
+							<h:outputLink value="#{request.contextPath}/admin/modifyCup.xhtml?id=#{cup.id}" class="btn btn-primary btn-xs" data-title="Modifier"
 								data-toggle="modal" data-target="#edit">
 								<span class="glyphicon glyphicon-pencil" />
 							</h:outputLink>
