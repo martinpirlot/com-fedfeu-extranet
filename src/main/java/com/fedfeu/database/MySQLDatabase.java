@@ -10,23 +10,23 @@ import java.util.List;
 import com.fedfeu.beans.Club;
 import com.fedfeu.beans.Cup;
 import com.fedfeu.beans.Member;
+import com.fedfeu.config.Config;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public class MySQLDatabase {
 	private static MysqlDataSource dataSource;
 
-	private static final String MYSQL_USER = "";
-	private static final String MYSQL_PASSWORD = "";
-	private static final String MYSQL_SERVER_NAME = "";
-
 	static {
 		dataSource = new MysqlDataSource();
-		dataSource.setUser(MYSQL_USER);
-		dataSource.setPassword(MYSQL_PASSWORD);
-		dataSource.setServerName(MYSQL_SERVER_NAME);
+		dataSource.setUser(Config.getProperty(Config.MYSQL_USER));
+		dataSource.setPassword(Config.getProperty(Config.MYSQL_PASSWORD));
+		dataSource.setServerName(Config.getProperty(Config.MYSQL_SERVER));
+		dataSource.setDatabaseName(Config.getProperty(Config.MYSQL_DATABASE));
 	}
 
 	public static Connection getConnection() {
+		System.out.println(dataSource.getUser());
+		System.out.println(dataSource.getServerName());
 		try {
 			return dataSource.getConnection();
 		} catch (SQLException e) {
