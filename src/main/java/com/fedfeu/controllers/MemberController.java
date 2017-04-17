@@ -55,11 +55,11 @@ public class MemberController implements Serializable {
 			member = MySQLDatabase.getMember(memberId);
 	}
 	
-	public String getId() {
+	public long getId() {
 		if(member != null)
 			return member.getId();
 		else
-			return "";
+			return -1;
 	}
 	
 	public String getFirstName() {
@@ -116,13 +116,6 @@ public class MemberController implements Serializable {
 			return member.getSex();
 		else
 			return null;
-	}
-	
-	public boolean isCertif() {
-		if(member != null)
-			return member.isCertif();
-		else
-			return false;
 	}
 	
 	public boolean isPsc() {

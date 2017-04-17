@@ -6,20 +6,20 @@ public class Address implements Serializable {
 	private static final long serialVersionUID = 5452721881117379577L;
 	
 	private String street;
-	private String postalCode;
+	private String postCode;
 	private String city;
 	private String country;
 	
 	public Address() {
 		this.street = "";
-		this.postalCode = "";
+		this.postCode = "";
 		this.city = "";
 		this.country = "";
 	}
 	
-	public Address(String street, String postalCode, String city, String country) {
+	public Address(String street, String postCode, String city, String country) {
 		this.street = street;
-		this.postalCode = postalCode;
+		this.postCode = postCode;
 		this.city = city;
 		this.country = country;
 	}
@@ -32,12 +32,12 @@ public class Address implements Serializable {
 		this.street = street;
 	}
 	
-	public String getPostalCode() {
-		return postalCode;
+	public String getPostCode() {
+		return postCode;
 	}
 	
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
 	}
 	
 	public String getCity() {
@@ -58,6 +58,6 @@ public class Address implements Serializable {
 	
 	@Override
 	public String toString() {
-		return getStreet() + "," + getPostalCode() + " " + getCity();
+		return getStreet() + "," + getPostCode() + " " + getCity();
 	}
 }

@@ -6,7 +6,7 @@ import java.sql.Date;
 public class Member implements Serializable {
 	private static final long serialVersionUID = -1101325964269528051L;
 	
-	private String id;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private Club club;
@@ -15,13 +15,12 @@ public class Member implements Serializable {
 	private String phone;
 	private Date birthDate;
 	private String sex;
-	private boolean certif;
 	private boolean psc;
 	private boolean psc2;
 	private boolean coach;
 	
 	public Member() {
-		this.id = "";
+		this.id = -1;
 		this.firstName = "";
 		this.lastName = "";
 		this.club = null;
@@ -30,14 +29,13 @@ public class Member implements Serializable {
 		this.phone = "";
 		this.birthDate = null;
 		this.sex = "";
-		this.certif = false;
 		this.psc = false;
 		this.psc2 = false;
 		this.coach = false;
 	}
 	
-	public Member(String id, String firstName, String lastName, Club club, String mail, Address address, String phone,
-			Date birthDate, String sex, boolean certif, boolean psc, boolean psc2, boolean coach) {
+	public Member(long id, String firstName, String lastName, Club club, String mail, Address address, String phone,
+			Date birthDate, String sex, boolean psc, boolean psc2, boolean coach) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -47,17 +45,16 @@ public class Member implements Serializable {
 		this.phone = phone;
 		this.birthDate = birthDate;
 		this.sex = sex;
-		this.certif = certif;
 		this.psc = psc;
 		this.psc2 = psc2;
 		this.coach = coach;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -123,14 +120,6 @@ public class Member implements Serializable {
 
 	public void setSex(String sex) {
 		this.sex = sex;
-	}
-
-	public boolean isCertif() {
-		return certif;
-	}
-
-	public void setCertif(boolean certif) {
-		this.certif = certif;
 	}
 
 	public boolean isPsc() {

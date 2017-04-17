@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fedfeu.beans.Address;
 import com.fedfeu.beans.Club;
 import com.fedfeu.beans.Cup;
 import com.fedfeu.beans.Member;
@@ -45,12 +46,17 @@ public class MySQLDatabase {
 
 			if (rs.next()) {
 				member = new Member();
-				member.setId(rs.getString("id"));
+				member.setId(rs.getLong("id"));
 				member.setFirstName(rs.getString("firstName"));
 				member.setLastName(rs.getString("lastName"));
 				member.setMail(rs.getString("mail"));
 				member.setPhone(rs.getString("phone"));
 				member.setBirthDate(rs.getDate("birthDate"));
+				member.setSex(rs.getString("sex"));
+				member.setCoach(rs.getBoolean("coach"));
+				member.setPsc(rs.getBoolean("psc1"));
+				member.setPsc2(rs.getBoolean("psc2"));
+				member.setAddress(new Address(rs.getString("street"), rs.getString("postCode"), rs.getString("city"), rs.getString("country")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,12 +84,17 @@ public class MySQLDatabase {
 
 			while (rs.next()) {
 				Member member = new Member();
-				member.setId(rs.getString("id"));
+				member.setId(rs.getLong("id"));
 				member.setFirstName(rs.getString("firstName"));
 				member.setLastName(rs.getString("lastName"));
 				member.setMail(rs.getString("mail"));
 				member.setPhone(rs.getString("phone"));
 				member.setBirthDate(rs.getDate("birthDate"));
+				member.setSex(rs.getString("sex"));
+				member.setCoach(rs.getBoolean("coach"));
+				member.setPsc(rs.getBoolean("psc1"));
+				member.setPsc2(rs.getBoolean("psc2"));
+				member.setAddress(new Address(rs.getString("street"), rs.getString("postCode"), rs.getString("city"), rs.getString("country")));
 				
 				memberList.add(member);
 			}
@@ -107,13 +118,24 @@ public class MySQLDatabase {
 		PreparedStatement ps = null;
 		int result = -1;
 		try {
-			ps = getConnection().prepareStatement("UPDATE Members SET firstName = ?, lastName = ?, mail = ?, phone = ?, birthDate = ? WHERE id = ?;");
+			ps = getConnection().prepareStatement("UPDATE Members SET firstName = ?, lastName = ?, mail = ?, phone = ?"
+					+ ", birthDate = ?, sex = ?, coach = ?, psc1 = ?, psc2 = ?, street = ?"
+					+ ", postCode = ?, city = ?, country = ? WHERE id = ?;");
 			ps.setString(1, member.getFirstName());
-			ps.setString(1, member.getLastName());
-			ps.setString(1, member.getMail());
-			ps.setString(1, member.getPhone());
-			ps.setDate(1, member.getBirthDate());
-			ps.setString(1, member.getId());
+			ps.setString(2, member.getLastName());
+			ps.setString(3, member.getMail());
+			ps.setString(4, member.getPhone());
+			ps.setDate(5, member.getBirthDate());
+			ps.setString(6, member.getSex());
+			ps.setBoolean(7, member.isCoach());
+			ps.setBoolean(8, member.isPsc());
+			ps.setBoolean(9, member.isPsc2());
+			Address add = member.getAddress();
+			ps.setString(10, add.getStreet());
+			ps.setString(11, add.getPostCode());
+			ps.setString(12, add.getCity());
+			ps.setString(13, add.getCountry());
+			ps.setLong(14, member.getId());
 
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
