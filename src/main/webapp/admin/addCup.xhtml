@@ -10,6 +10,11 @@
 			<h2 class="h2Title">Ajouter une compétition</h2>
 			<h:form class="form-horizontal" role="form">
 				<ui:include src="/WEB-INF/includes/formCup.xhtml" />
+				<div class="form-group">
+					<div class="col-sm-9 col-sm-offset-3">
+						<h:commandButton value="Ajouter" class="btn btn-primary btn-block addButton"  action="#{cupController.addCup}"/>
+					</div>
+				</div>
 			</h:form>
 		</div>
 	</ui:define>

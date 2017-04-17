@@ -34,6 +34,14 @@ public class MemberController implements Serializable {
 		return externalContext.getRequestContextPath();
 	}
 	
+	public String addMember() {
+		return null;
+	}
+	
+	public String updateMember() {
+		return null;
+	}
+	
 	@PostConstruct
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();

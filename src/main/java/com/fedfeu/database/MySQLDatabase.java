@@ -25,8 +25,6 @@ public class MySQLDatabase {
 	}
 
 	public static Connection getConnection() {
-		System.out.println(dataSource.getUser());
-		System.out.println(dataSource.getServerName());
 		try {
 			return dataSource.getConnection();
 		} catch (SQLException e) {
@@ -48,6 +46,11 @@ public class MySQLDatabase {
 			if (rs.next()) {
 				member = new Member();
 				member.setId(rs.getString("id"));
+				member.setFirstName(rs.getString("firstName"));
+				member.setLastName(rs.getString("lastName"));
+				member.setMail(rs.getString("mail"));
+				member.setPhone(rs.getString("phone"));
+				member.setBirthDate(rs.getDate("birthDate"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,6 +79,11 @@ public class MySQLDatabase {
 			while (rs.next()) {
 				Member member = new Member();
 				member.setId(rs.getString("id"));
+				member.setFirstName(rs.getString("firstName"));
+				member.setLastName(rs.getString("lastName"));
+				member.setMail(rs.getString("mail"));
+				member.setPhone(rs.getString("phone"));
+				member.setBirthDate(rs.getDate("birthDate"));
 				
 				memberList.add(member);
 			}
@@ -99,8 +107,12 @@ public class MySQLDatabase {
 		PreparedStatement ps = null;
 		int result = -1;
 		try {
-			ps = getConnection().prepareStatement("UPDATE Members SET id = ? WHERE id = ?;");
-			ps.setString(1, member.getId());
+			ps = getConnection().prepareStatement("UPDATE Members SET firstName = ?, lastName = ?, mail = ?, phone = ?, birthDate = ? WHERE id = ?;");
+			ps.setString(1, member.getFirstName());
+			ps.setString(1, member.getLastName());
+			ps.setString(1, member.getMail());
+			ps.setString(1, member.getPhone());
+			ps.setDate(1, member.getBirthDate());
 			ps.setString(1, member.getId());
 
 			result = ps.executeUpdate();

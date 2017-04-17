@@ -36,6 +36,14 @@ public class CupController implements Serializable {
 		return externalContext.getRequestContextPath();
 	}
 	
+	public String addCup() {
+		return null;
+	}
+	
+	public String updateCup() {
+		return null;
+	}
+	
 	@PostConstruct
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();

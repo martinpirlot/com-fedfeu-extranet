@@ -33,6 +33,14 @@ public class ClubController implements Serializable {
 		return externalContext.getRequestContextPath();
 	}
 	
+	public String addClub() {
+		return null;
+	}
+	
+	public String updateClub() {
+		return null;
+	}
+	
 	@PostConstruct
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();
