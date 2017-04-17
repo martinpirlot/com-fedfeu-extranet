@@ -16,6 +16,22 @@ public class Member {
 	private boolean psc2;
 	private boolean coach;
 	
+	public Member() {
+		super();
+		this.id = null;
+		this.firstName = null;
+		this.lastName = null;
+		this.club = null;
+		this.mail = null;
+		this.address = null;
+		this.phone = null;
+		this.birthDate = null;
+		this.certif = false;
+		this.psc = false;
+		this.psc2 = false;
+		this.coach = false;
+	}
+	
 	public Member(String id, String firstName, String lastName, Club club, String mail, Address address, String phone,
 			Date birthDate, boolean certif, boolean psc, boolean psc2, boolean coach) {
 		super();

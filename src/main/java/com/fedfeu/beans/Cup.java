@@ -12,8 +12,17 @@ public class Cup {
 	private String club;
 	private List<String> type;
 	
+	public Cup() {
+		this.id = null;
+		this.name = null;
+		this.startDate = null;
+		this.endDate = null;
+		this.address = null;
+		this.club = null;
+		this.type = null;
+	}
+	
 	public Cup(String id, String name, Date startDate, Date endDate, Address address, String club, List<String> type) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.startDate = startDate;

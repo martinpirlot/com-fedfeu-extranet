@@ -7,6 +7,15 @@ public class Club {
 	private String president;
 	private String mailContact;
 	private Address address;
+
+	public Club() {
+		this.id = null;
+		this.name = null;
+		this.website = null;
+		this.president = null;
+		this.mailContact = null;
+		this.address = null;
+	}
 	
 	public Club(String id, String name, String website, String president, String mailContact, Address address) {
 		super();
