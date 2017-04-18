@@ -35,28 +35,28 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="address" class="col-sm-3 control-label">Rue + N°</label>
+		<label for="street" class="col-sm-3 control-label">Rue + N°</label>
 		<div class="col-sm-9">
 			<h:inputText type="text" id="street" a:placeholder="Rue, numéro" value="#{memberController.member.address.street}"
 				class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="address" class="col-sm-3 control-label">Code postal</label>
+		<label for="postCode" class="col-sm-3 control-label">Code postal</label>
 		<div class="col-sm-9">
 			<h:inputText type="text" id="postCode" a:placeholder="Code postal" value="#{memberController.member.address.postCode}"
 				class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="address" class="col-sm-3 control-label">Ville</label>
+		<label for="city" class="col-sm-3 control-label">Ville</label>
 		<div class="col-sm-9">
 			<h:inputText type="text" id="city" a:placeholder="Ville" value="#{memberController.member.address.city}"
 				class="form-control" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="address" class="col-sm-3 control-label">Pays</label>
+		<label for="country" class="col-sm-3 control-label">Pays</label>
 		<div class="col-sm-9">
 			<h:inputText type="text" id="country" a:placeholder="Pays" value="#{memberController.member.address.country}"
 				class="form-control" />
@@ -69,12 +69,11 @@
 				class="form-control" />
 		</div>
 	</div>
-	<!-- /.form-group -->
 	<div class="form-group">
-		<label class="control-label col-sm-3">Sexe</label>
+		<label for="sex" class="control-label col-sm-3">Sexe</label>
 		<div class="col-sm-6">
 			<div class="row">
-				<h:selectOneRadio value="#{memberController.member.sex}">
+				<h:selectOneRadio id="sex" value="#{memberController.member.sex}">
 					<div class="col-sm-4">
 		   				<f:selectItem class="radio-inline" itemValue="F" itemLabel="Femme"/>
 		   			</div>
@@ -88,19 +87,16 @@
 	<div class="form-group">
 		<label for="club" class="col-sm-3 control-label">Club</label>
 		<div class="col-sm-9">
-			<select id="club" class="form-control">
-				<option>Staff</option>
-				<option>Club 1</option>
-				<option>Club 2</option>
-				<option>Club 3</option>
-			</select>
+			<h:selectOneMenu id="club" value="#{memberController.member.club}">
+				<f:selectItems value="#{homePageController.getClubMap}" />
+			</h:selectOneMenu>
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-3">PSC 1</label>
+		<label for="psc" class="control-label col-sm-3">PSC 1</label>
 		<div class="col-sm-6">
 			<div class="row">
-				<h:selectOneRadio value="#{memberController.member.psc}">
+				<h:selectOneRadio id="psc" value="#{memberController.member.psc}">
 					<div class="col-sm-4">
 		   				<f:selectItem class="radio-inline" itemValue="#{true}" itemLabel="Oui"/>
 		   			</div>
@@ -112,10 +108,10 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-3">PSC 2</label>
+		<label for="psc2" class="control-label col-sm-3">PSC 2</label>
 		<div class="col-sm-6">
 			<div class="row">
-				<h:selectOneRadio value="#{memberController.member.psc2}">
+				<h:selectOneRadio id="psc2" value="#{memberController.member.psc2}">
 					<div class="col-sm-4">
 		   				<f:selectItem class="radio-inline" itemValue="#{true}" itemLabel="Oui"/>
 		   			</div>
@@ -127,10 +123,10 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label class="control-label col-sm-3">Coach</label>
+		<label for="coach" class="control-label col-sm-3">Coach</label>
 		<div class="col-sm-6">
 			<div class="row">
-				<h:selectOneRadio value="#{memberController.member.coach}">
+				<h:selectOneRadio id="coach" value="#{memberController.member.coach}">
 					<div class="col-sm-4">
 		   				<f:selectItem class="radio-inline" itemValue="#{true}" itemLabel="Oui"/>
 		   			</div>

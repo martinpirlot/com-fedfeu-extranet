@@ -6,7 +6,7 @@ import java.util.Date;
 public class Member implements Serializable {
 	private static final long serialVersionUID = -1101325964269528051L;
 	
-	private long id;
+	private String id;
 	private String firstName;
 	private String lastName;
 	private Club club;
@@ -20,7 +20,7 @@ public class Member implements Serializable {
 	private boolean coach;
 	
 	public Member() {
-		this.id = -1;
+		this.id = "";
 		this.firstName = "";
 		this.lastName = "";
 		this.club = null;
@@ -34,7 +34,7 @@ public class Member implements Serializable {
 		this.coach = false;
 	}
 	
-	public Member(long id, String firstName, String lastName, Club club, String mail, Address address, String phone,
+	public Member(String id, String firstName, String lastName, Club club, String mail, Address address, String phone,
 			Date birthDate, String sex, boolean psc, boolean psc2, boolean coach) {
 		this.id = id;
 		this.firstName = firstName;
@@ -50,11 +50,11 @@ public class Member implements Serializable {
 		this.coach = coach;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

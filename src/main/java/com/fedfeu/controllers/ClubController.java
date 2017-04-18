@@ -1,6 +1,9 @@
 package com.fedfeu.controllers;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -9,7 +12,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.fedfeu.beans.Address;
 import com.fedfeu.beans.Club;
 import com.fedfeu.beans.Member;
 import com.fedfeu.database.MySQLDatabase;
@@ -48,51 +50,32 @@ public class ClubController implements Serializable {
 		
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		
-		clubId = request.getParameter("id");
+		clubId = request.getParameter("clubId");
 		
 		if(clubId != null)
 			club = MySQLDatabase.getClub(clubId);
 	}
 	
-	public String getId() {
-		if(club != null)
-			return club.getId();
-		else
-			return "";
+	public Club getClub() {
+		return club;
 	}
 	
-	public String getName() {
-		if(club != null)
-			return club.getName();
-		else
-			return "";
+	public void setClub(Club club) {
+		this.club = club;
 	}
 	
-	public String getWebsite() {
-		if(club != null)
-			return club.getWebsite();
-		else
-			return "";
-	}
-	
-	public Member getPresident() {
-		if(club != null)
-			return club.getPresident();
-		else
-			return new Member();
-	}
-	
-	public String getMailContact() {
-		if(club != null)
-			return club.getMailContact();
-		else
-			return "";
-	}
-	
-	public Address getAddress() {
-		if(club != null)
-			return club.getAddress();
-		else
-			return new Address();
+	public Map<String, Object> getMemberMap() {
+
+		Map<String, Object> memberMap = new LinkedHashMap<String, Object>();
+		if(clubId == null)
+			return memberMap;
+		
+		List<Member> memberList = MySQLDatabase.getMemberList(clubId);
+		
+		for(Member member : memberList) {
+			memberMap.put(member.getFirstName() + " " + member.getLastName(), member);
+		}
+		
+		return memberMap;
 	}
 }

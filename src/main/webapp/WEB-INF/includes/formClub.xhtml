@@ -2,27 +2,27 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Nom</label>
 		<div class="col-sm-9">
-			<input type="text" id="name" placeholder="Nom"
-				value="#{clubController.name}" class="form-control" />
+			<h:inputText id="name" required="true" a:placeholder="Nom" value="#{clubController.club.name}"
+				class="form-control" a:autofocus="autofocus" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="president" class="col-sm-3 control-label">Président</label>
 		<div class="col-sm-9">
-			<select id="president" class="form-control">
-				<option>#{clubController.president}</option>
-				<option>Prénom Nom 2</option>
-			</select>
+			<h:selectOneMenu value="#{clubController.club.president}">
+				<f:selectItems value="#{clubController.memberMap}" />
+			</h:selectOneMenu>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="website" class="col-sm-3 control-label">Site web</label>
 		<div class="col-sm-9">
-			<input type="text" id="website" placeholder="http://" value="#{clubController.website}"
+			<input type="text" id="website" placeholder="http://" value="#{clubController.club.website}"
 				class="form-control" />
 		</div>
 	</div>
@@ -30,7 +30,35 @@
 		<label for="email" class="col-sm-3 control-label">Email de
 			contact</label>
 		<div class="col-sm-9">
-			<input type="email" id="email" placeholder="Email" value="#{clubController.mailContact}"
+			<input type="email" id="email" placeholder="Email" value="#{clubController.club.mailContact}"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="street" class="col-sm-3 control-label">Rue + N°</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="street" a:placeholder="Rue, numéro" value="#{clubController.club.address.street}"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="postCode" class="col-sm-3 control-label">Code postal</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="postCode" a:placeholder="Code postal" value="#{clubController.club.address.postCode}"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="city" class="col-sm-3 control-label">Ville</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="city" a:placeholder="Ville" value="#{clubController.club.address.city}"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="country" class="col-sm-3 control-label">Pays</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="country" a:placeholder="Pays" value="#{clubController.club.address.country}"
 				class="form-control" />
 		</div>
 	</div>

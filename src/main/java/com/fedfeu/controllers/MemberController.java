@@ -59,7 +59,7 @@ public class MemberController implements Serializable {
 		
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		
-		memberId = request.getParameter("id");
+		memberId = request.getParameter("memberId");
 		
 		if(memberId != null)
 			member = MySQLDatabase.getMember(memberId);

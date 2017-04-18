@@ -1,9 +1,7 @@
 package com.fedfeu.beans;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class Cup implements Serializable {
 	private static final long serialVersionUID = 4137193302406822645L;
@@ -14,7 +12,9 @@ public class Cup implements Serializable {
 	private Date endDate;
 	private Address address;
 	private Club club;
-	private List<String> typeList;
+	private boolean highJump;
+	private boolean tripleJump;
+	private boolean freestyleStreet;
 	
 	public Cup() {
 		this.id = "";
@@ -23,17 +23,21 @@ public class Cup implements Serializable {
 		this.endDate = null;
 		this.address = new Address();
 		this.club = new Club();
-		this.typeList = new ArrayList<String>();
+		this.highJump = false;
+		this.tripleJump = false;
+		this.freestyleStreet = false;
 	}
 	
-	public Cup(String id, String name, Date startDate, Date endDate, Address address, Club club, List<String> typeList) {
+	public Cup(String id, String name, Date startDate, Date endDate, Address address, Club club, boolean highJump, boolean tripleJump, boolean freestyleStreet) {
 		this.id = id;
 		this.name = name;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.address = address;
 		this.club = club;
-		this.typeList = typeList;
+		this.highJump = highJump;
+		this.tripleJump = tripleJump;
+		this.freestyleStreet = freestyleStreet;
 	}
 
 	public String getId() {
@@ -84,24 +88,28 @@ public class Cup implements Serializable {
 		this.club = club;
 	}
 
-	public List<String> getTypeList() {
-		return typeList;
-	}
-	
-	public String getTypeListString() {
-		StringBuilder sb = new StringBuilder();
-		List<String> typeList = getTypeList();
-		for(String type : typeList) {
-			sb.append(type + ", ");
-		}
-		
-		if(!typeList.isEmpty())
-			sb.setLength(sb.length() - 2);
-		
-		return sb.toString();
+	public boolean isHighJump() {
+		return highJump;
 	}
 
-	public void setType(List<String> typeList) {
-		this.typeList = typeList;
+	public void setHighJump(boolean highJump) {
+		this.highJump = highJump;
 	}
+
+	public boolean isTripleJump() {
+		return tripleJump;
+	}
+
+	public void setTripleJump(boolean tripleJump) {
+		this.tripleJump = tripleJump;
+	}
+
+	public boolean isFreestyleStreet() {
+		return freestyleStreet;
+	}
+
+	public void setFreestyleStreet(boolean freestyleStreet) {
+		this.freestyleStreet = freestyleStreet;
+	}
+	
 }

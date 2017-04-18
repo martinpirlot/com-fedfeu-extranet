@@ -34,19 +34,19 @@ public class MySQLDatabase {
 		}
 	}
 
-	public static Member getMember(String id) {
+	public static Member getMember(String memberId) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Member member = null;
 		try {
-			ps = getConnection().prepareStatement("SELECT * FROM Members WHERE id = ?");
-			ps.setString(1, id);
+			ps = getConnection().prepareStatement("SELECT * FROM Members WHERE id = ?;");
+			ps.setString(1, memberId);
 
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
 				member = new Member();
-				member.setId(rs.getLong("id"));
+				member.setId(rs.getString("id"));
 				member.setFirstName(rs.getString("firstName"));
 				member.setLastName(rs.getString("lastName"));
 				member.setMail(rs.getString("mail"));
@@ -78,13 +78,13 @@ public class MySQLDatabase {
 		ResultSet rs = null;
 		List<Member> memberList = new ArrayList<Member>();
 		try {
-			ps = getConnection().prepareStatement("SELECT * FROM Members");
+			ps = getConnection().prepareStatement("SELECT * FROM Members;");
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
 				Member member = new Member();
-				member.setId(rs.getLong("id"));
+				member.setId(rs.getString("id"));
 				member.setFirstName(rs.getString("firstName"));
 				member.setLastName(rs.getString("lastName"));
 				member.setMail(rs.getString("mail"));
@@ -113,6 +113,82 @@ public class MySQLDatabase {
 		
 		return memberList;
 	}
+	
+	public static List<Member> getMemberList(String clubId) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Member> memberList = new ArrayList<Member>();
+		try {
+			ps = getConnection().prepareStatement("SELECT * FROM Members WHERE club = ?;");
+			ps.setString(1, clubId);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Member member = new Member();
+				member.setId(rs.getString("id"));
+				member.setFirstName(rs.getString("firstName"));
+				member.setLastName(rs.getString("lastName"));
+				member.setMail(rs.getString("mail"));
+				member.setPhone(rs.getString("phone"));
+				member.setBirthDate(rs.getDate("birthDate"));
+				member.setSex(rs.getString("sex"));
+				member.setCoach(rs.getBoolean("coach"));
+				member.setPsc(rs.getBoolean("psc1"));
+				member.setPsc2(rs.getBoolean("psc2"));
+				member.setAddress(new Address(rs.getString("street"), rs.getString("postCode"), rs.getString("city"), rs.getString("country")));
+				
+				memberList.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return memberList;
+	}
+	
+	public static int addMember(Member member) {
+		PreparedStatement ps = null;
+		int result = -1;
+		try {
+			ps = getConnection().prepareStatement("INSERT INTO Members VALUES (null, ?, ?, ?, ?"
+					+ ", ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			ps.setString(1, member.getFirstName());
+			ps.setString(2, member.getLastName());
+			ps.setString(3, member.getMail());
+			ps.setString(4, member.getPhone());
+			ps.setDate(5, new java.sql.Date(member.getBirthDate().getTime()));
+			ps.setString(6, member.getSex());
+			ps.setBoolean(7, member.isCoach());
+			ps.setBoolean(8, member.isPsc());
+			ps.setBoolean(9, member.isPsc2());
+			Address add = member.getAddress();
+			ps.setString(10, add.getStreet());
+			ps.setString(11, add.getPostCode());
+			ps.setString(12, add.getCity());
+			ps.setString(13, add.getCountry());
+
+			result = ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null)
+					ps.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+	}
 
 	public static int updateMember(Member member) {
 		PreparedStatement ps = null;
@@ -135,7 +211,7 @@ public class MySQLDatabase {
 			ps.setString(11, add.getPostCode());
 			ps.setString(12, add.getCity());
 			ps.setString(13, add.getCountry());
-			ps.setLong(14, member.getId());
+			ps.setString(14, member.getId());
 
 			result = ps.executeUpdate();
 		} catch (SQLException e) {
@@ -151,13 +227,13 @@ public class MySQLDatabase {
 		return result;
 	}
 
-	public static Club getClub(String id) {
+	public static Club getClub(String clubId) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Club club = null;
 		try {
-			ps = getConnection().prepareStatement("SELECT * FROM Clubs WHERE id = ?");
-			ps.setString(1, id);
+			ps = getConnection().prepareStatement("SELECT * FROM Clubs WHERE id = ?;");
+			ps.setString(1, clubId);
 
 			rs = ps.executeQuery();
 
@@ -185,7 +261,7 @@ public class MySQLDatabase {
 		ResultSet rs = null;
 		List<Club> clubList = new ArrayList<Club>();
 		try {
-			ps = getConnection().prepareStatement("SELECT * FROM Clubs");
+			ps = getConnection().prepareStatement("SELECT * FROM Clubs;");
 
 			rs = ps.executeQuery();
 
@@ -233,13 +309,13 @@ public class MySQLDatabase {
 		return result;
 	}
 
-	public static Cup getCup(String id) {
+	public static Cup getCup(String cupId) {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		Cup cup = null;
 		try {
-			ps = getConnection().prepareStatement("SELECT * FROM Cups WHERE id = ?");
-			ps.setString(1, id);
+			ps = getConnection().prepareStatement("SELECT * FROM Cups WHERE id = ?;");
+			ps.setString(1, cupId);
 
 			rs = ps.executeQuery();
 
@@ -267,7 +343,7 @@ public class MySQLDatabase {
 		ResultSet rs = null;
 		List<Cup> cupList = new ArrayList<Cup>();
 		try {
-			ps = getConnection().prepareStatement("SELECT * FROM Cups");
+			ps = getConnection().prepareStatement("SELECT * FROM Cups;");
 
 			rs = ps.executeQuery();
 
