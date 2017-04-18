@@ -125,7 +125,7 @@ public class MySQLDatabase {
 			ps.setString(2, member.getLastName());
 			ps.setString(3, member.getMail());
 			ps.setString(4, member.getPhone());
-			ps.setDate(5, member.getBirthDate());
+			ps.setDate(5, new java.sql.Date(member.getBirthDate().getTime()));
 			ps.setString(6, member.getSex());
 			ps.setBoolean(7, member.isCoach());
 			ps.setBoolean(8, member.isPsc());

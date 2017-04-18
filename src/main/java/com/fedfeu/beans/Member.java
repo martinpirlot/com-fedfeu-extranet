@@ -1,7 +1,7 @@
 package com.fedfeu.beans;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class Member implements Serializable {
 	private static final long serialVersionUID = -1101325964269528051L;
