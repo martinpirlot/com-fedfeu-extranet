@@ -3,13 +3,14 @@ package com.fedfeu.controllers;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-@ManagedBean
-@SessionScoped
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("session")
 public class UserSessionController implements Serializable {
 	private static final long serialVersionUID = 6222608349626082143L;
 	

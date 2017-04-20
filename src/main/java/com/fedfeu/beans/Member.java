@@ -3,10 +3,18 @@ package com.fedfeu.beans;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Member implements Serializable {
 	private static final long serialVersionUID = -1101325964269528051L;
 	
-	private String id;
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String firstName;
 	private String lastName;
 	private Club club;
@@ -20,7 +28,6 @@ public class Member implements Serializable {
 	private boolean coach;
 	
 	public Member() {
-		this.id = "";
 		this.firstName = "";
 		this.lastName = "";
 		this.club = null;
@@ -28,15 +35,14 @@ public class Member implements Serializable {
 		this.address = new Address();
 		this.phone = "";
 		this.birthDate = null;
-		this.sex = "";
+		this.sex = "M";
 		this.psc = false;
 		this.psc2 = false;
 		this.coach = false;
 	}
 	
-	public Member(String id, String firstName, String lastName, Club club, String mail, Address address, String phone,
+	public Member(String firstName, String lastName, Club club, String mail, Address address, String phone,
 			Date birthDate, String sex, boolean psc, boolean psc2, boolean coach) {
-		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.club = club;
@@ -50,11 +56,11 @@ public class Member implements Serializable {
 		this.coach = coach;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -3,34 +3,40 @@ package com.fedfeu.controllers;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.fedfeu.beans.Member;
-import com.fedfeu.database.MySQLDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@ManagedBean
-@RequestScoped
+import com.fedfeu.beans.Member;
+
+@Component
+@Scope("request")
 public class MemberController implements Serializable {
 	private static final long serialVersionUID = -3700388372648488221L;
-	
+
 	private FacesContext facesContext;
 	private ExternalContext externalContext;
+	private DatabaseController databaseController;
 	
-	private String memberId = null;
+	@Autowired
+    private ApplicationContext applicationContext;
+
+	private long memberId;
 	private Member member = null;
-	
+
 	public String getContextPath() {
 		return externalContext.getApplicationContextPath();
 	}
-	
+
 	public String getRequestContextPath() {
 		return externalContext.getRequestContextPath();
 	}
-	
+
 	public String addMember() {
 		System.out.println(member.getFirstName());
 		System.out.println(member.getLastName());
@@ -45,32 +51,42 @@ public class MemberController implements Serializable {
 		System.out.println("Coach:" + member.isCoach());
 		System.out.println("PSC:" + member.isPsc());
 		System.out.println("PSC2:" + member.isPsc2());
+
+		databaseController.saveMember(member);
 		return null;
 	}
-	
+
 	public String updateMember() {
 		return null;
 	}
-	
+
 	@PostConstruct
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();
 		externalContext = facesContext.getExternalContext();
-		
+		databaseController = (DatabaseController) applicationContext.getBean("databaseController");
+
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+
+		String sMemberId = request.getParameter("memberId");
+		if(sMemberId != null) {
+			try {
+				memberId = Long.parseLong(sMemberId);
+				member = databaseController.getMember(memberId);
+			} catch (Exception e) {
+			}
+		}
 		
-		memberId = request.getParameter("memberId");
-		
-		if(memberId != null)
-			member = MySQLDatabase.getMember(memberId);
-		else
+		if(member == null) {
+			memberId = -1;
 			member = new Member();
+		}
 	}
-	
+
 	public Member getMember() {
 		return member;
 	}
-	
+
 	public void setMember(Member member) {
 		this.member = member;
 	}

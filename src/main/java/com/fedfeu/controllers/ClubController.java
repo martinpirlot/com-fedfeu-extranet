@@ -1,30 +1,33 @@
 package com.fedfeu.controllers;
 
 import java.io.Serializable;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
-import com.fedfeu.beans.Club;
-import com.fedfeu.beans.Member;
-import com.fedfeu.database.MySQLDatabase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
-@ManagedBean
-@RequestScoped	
+import com.fedfeu.beans.Club;
+
+@Component
+@Scope("request")
 public class ClubController implements Serializable {
 	private static final long serialVersionUID = 2272588195135381178L;
 	
 	private FacesContext facesContext;
 	private ExternalContext externalContext;
+	private DatabaseController databaseController;
 	
-	private String clubId = null;
+	@Autowired
+    private ApplicationContext applicationContext;
+	
+	private long clubId;
 	private Club club = null;
 	
 	public String getContextPath() {
@@ -47,13 +50,23 @@ public class ClubController implements Serializable {
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();
 		externalContext = facesContext.getExternalContext();
+		databaseController = (DatabaseController) applicationContext.getBean("databaseController");
 		
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		
-		clubId = request.getParameter("clubId");
+		String sClubId = request.getParameter("clubId");
+		if(sClubId != null) {
+			try {
+				clubId = Long.parseLong(sClubId);
+				club = databaseController.getClub(clubId);
+			} catch (Exception e) {
+			}
+		}
 		
-		if(clubId != null)
-			club = MySQLDatabase.getClub(clubId);
+		if(club == null) {
+			clubId = -1;
+			club = new Club();
+		}
 	}
 	
 	public Club getClub() {
@@ -64,18 +77,7 @@ public class ClubController implements Serializable {
 		this.club = club;
 	}
 	
-	public Map<String, Object> getMemberMap() {
-
-		Map<String, Object> memberMap = new LinkedHashMap<String, Object>();
-		if(clubId == null)
-			return memberMap;
-		
-		List<Member> memberList = MySQLDatabase.getMemberList(clubId);
-		
-		for(Member member : memberList) {
-			memberMap.put(member.getFirstName() + " " + member.getLastName(), member);
-		}
-		
-		return memberMap;
+	public Map<String, Object> getMembersOfClubMap() {
+		return databaseController.getMembersOfClubMap(clubId);
 	}
 }

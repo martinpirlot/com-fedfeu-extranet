@@ -2,10 +2,18 @@ package com.fedfeu.beans;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Club implements Serializable {
 	private static final long serialVersionUID = 917043626784298073L;
 	
-	private String id;
+	@Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String name;
 	private String website;
 	private Member president;
@@ -13,7 +21,6 @@ public class Club implements Serializable {
 	private Address address;
 
 	public Club() {
-		this.id = "";
 		this.name = "";
 		this.website = "";
 		this.president = new Member();
@@ -21,8 +28,7 @@ public class Club implements Serializable {
 		this.address = new Address();
 	}
 	
-	public Club(String id, String name, String website, Member president, String mailContact, Address address) {
-		this.id = id;
+	public Club(String name, String website, Member president, String mailContact, Address address) {
 		this.name = name;
 		this.website = website;
 		this.president = president;
@@ -30,11 +36,11 @@ public class Club implements Serializable {
 		this.address = address;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
