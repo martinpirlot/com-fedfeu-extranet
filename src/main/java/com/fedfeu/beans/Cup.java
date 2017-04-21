@@ -27,7 +27,7 @@ public class Cup implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
 	private Address address;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name = "club_id")
 	private Club club;
 	@Column(nullable = false, columnDefinition = "TINYINT(1)")
@@ -131,5 +131,24 @@ public class Cup implements Serializable {
 	public void setFreestyleStreet(boolean freestyleStreet) {
 		this.freestyleStreet = freestyleStreet;
 	}
+	
+	@Override
+	public String toString() {
+		return getName() + " " + getStartDate();
+	}
 
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (id == null || obj == null || getClass() != obj.getClass())
+            return false;
+        Cup that = (Cup) obj;
+        return id.equals(that.id);
+    }
+	
+    @Override
+    public int hashCode() {
+        return id == null ? 0 : id.hashCode();
+    }
 }

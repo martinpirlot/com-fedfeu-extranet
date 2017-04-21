@@ -32,11 +32,40 @@
 	<div class="form-group">
 		<label for="club" class="col-sm-3 control-label">Club</label>
 		<div class="col-sm-9">
-			<h:selectOneMenu id="club" value="#{cupController.cup.club}" required="true"  converter="omnifaces.SelectItemsConverter">
-				<f:selectItems value="#{cupController.clubsMap}" />
+			<h:selectOneMenu id="club" value="#{cupController.cup.club}" required="true" converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{cupController.clubList}" />
 			</h:selectOneMenu>
 		</div>
 	</div>
+	<div class="form-group">
+		<label for="street" class="col-sm-3 control-label">Rue + N°</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="street" a:placeholder="Rue, numéro" value="#{cupController.cup.address.street}"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="postCode" class="col-sm-3 control-label">Code postal</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="postCode" a:placeholder="Code postal" value="#{cupController.cup.address.postCode}"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="city" class="col-sm-3 control-label">Ville</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="city" a:placeholder="Ville" value="#{cupController.cup.address.city}"
+				class="form-control" />
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="country" class="col-sm-3 control-label">Pays</label>
+		<div class="col-sm-9">
+			<h:inputText type="text" id="country" a:placeholder="Pays" value="#{cupController.cup.address.country}"
+				class="form-control" />
+		</div>
+	</div>
+	<h:inputHidden id="addressId" value="#{cupController.cup.address.id}" />
 	<div class="form-group">
 		<label for="highJump" class="control-label col-sm-3">Saut en hauteur</label>
 		<div class="col-sm-6">
@@ -82,4 +111,5 @@
 			</div>
 		</div>
 	</div>
+	<h:inputHidden id="id" value="#{cupController.cup.id}" />
 </ui:composition>

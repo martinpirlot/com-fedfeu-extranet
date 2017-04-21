@@ -1,7 +1,7 @@
 package com.fedfeu.controllers;
 
 import java.io.Serializable;
-import java.util.Map;
+import java.util.ArrayList;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fedfeu.beans.Club;
 import com.fedfeu.beans.Cup;
 
 @Component
@@ -54,6 +55,7 @@ public class CupController implements Serializable {
 	}
 	
 	public String updateCup() {
+		databaseController.saveCup(cup);
 		return null;
 	}
 	
@@ -87,7 +89,7 @@ public class CupController implements Serializable {
 		this.cup = cup;
 	}
 	
-	public Map<String, Object> getClubsMap() {
-		return databaseController.getClubsMap();
+	public ArrayList<Club> getClubList() {
+		return databaseController.getClubList();
 	}
 }

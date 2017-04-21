@@ -40,6 +40,12 @@ public class ClubController implements Serializable {
 	}
 	
 	public String addClub() {
+		databaseController.saveClub(club);
+		return null;
+	}
+	
+	public String updateClub() {
+		System.out.println(club.getId());
 		System.out.println(club.getName());
 		System.out.println(club.getWebsite());
 		System.out.println(club.getPresident());
@@ -48,12 +54,7 @@ public class ClubController implements Serializable {
 		System.out.println(club.getAddress().getPostCode());
 		System.out.println(club.getAddress().getCity());
 		System.out.println(club.getAddress().getCountry());
-
 		databaseController.saveClub(club);
-		return null;
-	}
-	
-	public String updateClub() {
 		return null;
 	}
 	

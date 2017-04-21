@@ -36,6 +36,12 @@ public class MemberController implements Serializable {
 	}
 
 	public String addMember() {
+		databaseController.saveMember(member);
+		return null;
+	}
+
+	public String updateMember() {
+		System.out.println(member.getId());
 		System.out.println(member.getFirstName());
 		System.out.println(member.getLastName());
 		System.out.println(member.getMail());
@@ -54,10 +60,6 @@ public class MemberController implements Serializable {
 		return null;
 	}
 
-	public String updateMember() {
-		return null;
-	}
-
 	@PostConstruct
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();
@@ -70,6 +72,9 @@ public class MemberController implements Serializable {
 			try {
 				memberId = Long.parseLong(sMemberId);
 				member = databaseController.getMember(memberId);
+				System.out.println(member.getId());
+				System.out.println(member.getFirstName());
+				System.out.println(memberId);
 			} catch (Exception e) {
 			}
 		}

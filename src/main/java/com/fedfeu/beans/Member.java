@@ -25,7 +25,7 @@ public class Member implements Serializable {
 	private String firstName;
 	@Column(nullable = false)
 	private String lastName;
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
     @JoinColumn(name="club_id")
 	private Club club;
 	private String mail;
@@ -172,4 +172,19 @@ public class Member implements Serializable {
 	public String toString() {
 		return getFirstName() + " " + getLastName();
 	}
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (id == null || obj == null || getClass() != obj.getClass())
+            return false;
+        Member that = (Member) obj;
+        return id.equals(that.id);
+    }
+	
+    @Override
+    public int hashCode() {
+        return id == null ? 0 : id.hashCode();
+    }
 }

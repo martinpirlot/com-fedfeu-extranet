@@ -44,6 +44,10 @@ public class DatabaseController implements Serializable {
 		return Utils.makeList(clubRepository.findAll());
 	}
 	
+	public ArrayList<Cup> getCupList() {
+		return Utils.makeList(cupRepository.findAll());
+	}
+	
 	public Club getClub(long clubId) {
 		Club club = null;
 		try {

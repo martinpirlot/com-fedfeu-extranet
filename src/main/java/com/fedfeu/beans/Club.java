@@ -30,9 +30,9 @@ public class Club implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "address_id")
 	private Address address;
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "club")
+	@OneToMany(mappedBy = "club")
 	private List<Member> members = new ArrayList<Member>();
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "club")
+	@OneToMany(mappedBy = "club")
 	private List<Cup> cups = new ArrayList<Cup>();
 
 	public Club() {
@@ -105,4 +105,24 @@ public class Club implements Serializable {
 	public List<Cup> getCups() {
 		return cups;
 	}
+	
+	@Override
+	public String toString() {
+		return getName();
+	}
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (id == null || obj == null || getClass() != obj.getClass())
+            return false;
+        Club that = (Club) obj;
+        return id.equals(that.id);
+    }
+	
+    @Override
+    public int hashCode() {
+        return id == null ? 0 : id.hashCode();
+    }
 }
