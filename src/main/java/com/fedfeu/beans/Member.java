@@ -3,10 +3,16 @@ package com.fedfeu.beans;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Member implements Serializable {
@@ -15,16 +21,26 @@ public class Member implements Serializable {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private String firstName;
+	@Column(nullable = false)
 	private String lastName;
+	@ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name="club_id")
 	private Club club;
 	private String mail;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id")
 	private Address address;
 	private String phone;
 	private Date birthDate;
+	@Column(nullable = false)
 	private String sex;
+	@Column(nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean psc;
+	@Column(nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean psc2;
+	@Column(nullable = false, columnDefinition = "TINYINT(1)")
 	private boolean coach;
 	
 	public Member() {
@@ -95,7 +111,7 @@ public class Member implements Serializable {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-
+	
 	public Address getAddress() {
 		return address;
 	}

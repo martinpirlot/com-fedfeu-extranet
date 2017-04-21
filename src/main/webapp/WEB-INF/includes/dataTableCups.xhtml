@@ -11,7 +11,9 @@
 				<th>Adresse</th>
 				<th>Date de début</th>
 				<th>Date de fin</th>
-				<th>Type d'épreuves</th>
+				<th>Hauteur</th>
+				<th>Triple saut</th>
+				<th>Freestyle street</th>
 				<th>Modifier</th>
 			</tr>
 		</thead>
@@ -22,7 +24,9 @@
 				<th>Adresse</th>
 				<th>Date de début</th>
 				<th>Date de fin</th>
-				<th>Type d'épreuves</th>
+				<th>Hauteur</th>
+				<th>Triple saut</th>
+				<th>Freestyle street</th>
 				<th>Modifier</th>
 			</tr>
 		</tfoot>
@@ -34,7 +38,36 @@
 					<td>#{cup.address}</td>
 					<td>#{cup.startDate}</td>
 					<td>#{cup.endDate}</td>
-					<td>#{cup.typeListString}</td>
+					<td>
+						<c:choose>
+						    <c:when test="#{cup.highJump}">
+						        <span class="glyphicon glyphicon-ok"></span>
+						    </c:when>
+						    <c:otherwise>
+						        <span class="glyphicon glyphicon-remove"></span>
+						    </c:otherwise>
+						</c:choose>
+					</td>
+					<td>
+						<c:choose>
+						    <c:when test="#{cup.tripleJump}">
+						        <span class="glyphicon glyphicon-ok"></span>
+						    </c:when>
+						    <c:otherwise>
+						        <span class="glyphicon glyphicon-remove"></span>
+						    </c:otherwise>
+						</c:choose>
+					</td>
+					<td>
+						<c:choose>
+						    <c:when test="#{cup.freestyleStreet}">
+						        <span class="glyphicon glyphicon-ok"></span>
+						    </c:when>
+						    <c:otherwise>
+						        <span class="glyphicon glyphicon-remove"></span>
+						    </c:otherwise>
+						</c:choose>
+					</td>
 					<td>
 						<p data-placement="top" data-toggle="tooltip" title="Edit">
 							<h:outputLink value="#{request.contextPath}/admin/modifyCup.xhtml?cupId=#{cup.id}" class="btn btn-primary btn-xs" data-title="Modifier"

@@ -1,6 +1,7 @@
 package com.fedfeu.controllers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -9,11 +10,11 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.fedfeu.beans.Club;
+import com.fedfeu.beans.Member;
 
 @Component
 @Scope("request")
@@ -22,13 +23,13 @@ public class ClubController implements Serializable {
 	
 	private FacesContext facesContext;
 	private ExternalContext externalContext;
-	private DatabaseController databaseController;
 	
 	@Autowired
-    private ApplicationContext applicationContext;
+    private DatabaseController databaseController;
 	
 	private long clubId;
 	private Club club = null;
+	ArrayList<Member> memberList;
 	
 	public String getContextPath() {
 		return externalContext.getApplicationContextPath();
@@ -39,6 +40,16 @@ public class ClubController implements Serializable {
 	}
 	
 	public String addClub() {
+		System.out.println(club.getName());
+		System.out.println(club.getWebsite());
+		System.out.println(club.getPresident());
+		System.out.println(club.getMailContact());
+		System.out.println(club.getAddress().getStreet());
+		System.out.println(club.getAddress().getPostCode());
+		System.out.println(club.getAddress().getCity());
+		System.out.println(club.getAddress().getCountry());
+
+		databaseController.saveClub(club);
 		return null;
 	}
 	
@@ -50,7 +61,6 @@ public class ClubController implements Serializable {
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();
 		externalContext = facesContext.getExternalContext();
-		databaseController = (DatabaseController) applicationContext.getBean("databaseController");
 		
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		
@@ -67,6 +77,8 @@ public class ClubController implements Serializable {
 			clubId = -1;
 			club = new Club();
 		}
+		
+		memberList = databaseController.getMemberList();
 	}
 	
 	public Club getClub() {
@@ -77,7 +89,7 @@ public class ClubController implements Serializable {
 		this.club = club;
 	}
 	
-	public Map<String, Object> getMembersOfClubMap() {
-		return databaseController.getMembersOfClubMap(clubId);
+	public ArrayList<Member> getMembersOfClubMap() {
+		return memberList;
 	}
 }

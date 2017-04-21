@@ -7,14 +7,15 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Nom</label>
 		<div class="col-sm-9">
-			<h:inputText id="name" required="true" a:placeholder="Nom" value="#{clubController.club.name}"
-				class="form-control" a:autofocus="autofocus" />
+			<h:inputText id="name" a:placeholder="Nom" value="#{clubController.club.name}"
+				class="form-control" a:autofocus="autofocus" required="true" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="president" class="col-sm-3 control-label">Président</label>
 		<div class="col-sm-9">
-			<h:selectOneMenu value="#{clubController.club.president}">
+			<h:selectOneMenu value="#{clubController.club.president}" converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="Aucun" noSelectionOption="true" />
 				<f:selectItems value="#{clubController.membersOfClubMap}" />
 			</h:selectOneMenu>
 		</div>
@@ -22,7 +23,7 @@
 	<div class="form-group">
 		<label for="website" class="col-sm-3 control-label">Site web</label>
 		<div class="col-sm-9">
-			<input type="text" id="website" placeholder="http://" value="#{clubController.club.website}"
+			<h:inputText type="text" id="website" a:placeholder="http://" value="#{clubController.club.website}"
 				class="form-control" />
 		</div>
 	</div>
@@ -30,7 +31,7 @@
 		<label for="email" class="col-sm-3 control-label">Email de
 			contact</label>
 		<div class="col-sm-9">
-			<input type="email" id="email" placeholder="Email" value="#{clubController.club.mailContact}"
+			<h:inputText type="email" id="email" a:placeholder="Email" value="#{clubController.club.mailContact}"
 				class="form-control" />
 		</div>
 	</div>

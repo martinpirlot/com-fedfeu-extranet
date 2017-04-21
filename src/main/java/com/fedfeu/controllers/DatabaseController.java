@@ -1,6 +1,7 @@
 package com.fedfeu.controllers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import com.fedfeu.beans.Member;
 import com.fedfeu.database.ClubRepository;
 import com.fedfeu.database.CupRepository;
 import com.fedfeu.database.MemberRepository;
+import com.fedfeu.utils.Utils;
 
 @Service
 public class DatabaseController implements Serializable {
@@ -36,6 +38,10 @@ public class DatabaseController implements Serializable {
 		}
 
 		return clubMap;
+	}
+	
+	public ArrayList<Club> getClubList() {
+		return Utils.makeList(clubRepository.findAll());
 	}
 	
 	public Club getClub(long clubId) {
@@ -68,20 +74,30 @@ public class DatabaseController implements Serializable {
 		return member;
 	}
 	
+	public ArrayList<Member> getMemberList() {
+		return Utils.makeList(memberRepository.findAll());
+	}
+	
 	public void saveMember(Member member) {
 		memberRepository.save(member);
+	}
+	
+	public void saveClub(Club club) {
+		clubRepository.save(club);
+	}
+	
+	public void saveCup(Cup cup) {
+		cupRepository.save(cup);
 	}
 	
 	public Map<String, Object> getMembersOfClubMap(long clubId) {
 
 		Map<String, Object> memberMap = new LinkedHashMap<String, Object>();
-		if(clubId != -1)
-			return memberMap;
 		
 		Iterable<Member> memberIterable = memberRepository.findAll();
 		
 		for(Member member : memberIterable) {
-			memberMap.put(member.getFirstName() + " " + member.getLastName(), member);
+			memberMap.put(member.toString(), member);
 		}
 		
 		return memberMap;

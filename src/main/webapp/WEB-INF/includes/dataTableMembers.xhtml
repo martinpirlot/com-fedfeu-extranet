@@ -12,6 +12,7 @@
 				<th>Mail</th>
 				<th>Téléphone</th>
 				<th>Date de naissance</th>
+				<th>Coach</th>
 				<th>Modifier</th>
 			</tr>
 		</thead>
@@ -23,11 +24,12 @@
 				<th>Mail</th>
 				<th>Téléphone</th>
 				<th>Date de naissance</th>
+				<th>Coach</th>
 				<th>Modifier</th>
 			</tr>
 		</tfoot>
 		<tbody>
-			<c:forEach items="#{dataListController.memberList}" var="member">
+			<c:forEach items="#{databaseController.memberList}" var="member">
 				<tr>
 					<td>#{member.lastName}</td>
 					<td>#{member.firstName}</td>
@@ -35,7 +37,16 @@
 					<td>#{member.mail}</td>
 					<td>#{member.phone}</td>
 					<td>#{member.birthDate}</td>
-					<td><span class="glyphicon glyphicon-remove"></span></td>
+					<td>
+						<c:choose>
+						    <c:when test="#{member.coach}">
+						        <span class="glyphicon glyphicon-ok"></span>
+						    </c:when>
+						    <c:otherwise>
+						        <span class="glyphicon glyphicon-remove"></span>
+						    </c:otherwise>
+						</c:choose>
+					</td>
 					<td>
 						<p data-placement="top" data-toggle="tooltip" title="Edit">
 							<h:outputLink value="#{request.contextPath}/admin/modifyMember.xhtml?memberId=#{member.id}" class="btn btn-primary btn-xs" data-title="Modifier"

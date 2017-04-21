@@ -1,11 +1,18 @@
 package com.fedfeu.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Club implements Serializable {
@@ -16,14 +23,21 @@ public class Club implements Serializable {
 	private Long id;
 	private String name;
 	private String website;
+	@OneToOne
+	@JoinColumn(name="member_id")
 	private Member president;
 	private String mailContact;
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "address_id")
 	private Address address;
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "club")
+	private List<Member> members = new ArrayList<Member>();
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "club")
+	private List<Cup> cups = new ArrayList<Cup>();
 
 	public Club() {
 		this.name = "";
 		this.website = "";
-		this.president = new Member();
 		this.mailContact = "";
 		this.address = new Address();
 	}
@@ -82,5 +96,13 @@ public class Club implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+	public List<Member> getMembers() {
+		return members;
+	}
+	
+	public List<Cup> getCups() {
+		return cups;
 	}
 }

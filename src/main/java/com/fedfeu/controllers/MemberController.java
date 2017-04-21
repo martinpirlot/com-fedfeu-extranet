@@ -8,7 +8,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -21,10 +20,9 @@ public class MemberController implements Serializable {
 
 	private FacesContext facesContext;
 	private ExternalContext externalContext;
-	private DatabaseController databaseController;
 	
 	@Autowired
-    private ApplicationContext applicationContext;
+    private DatabaseController databaseController;
 
 	private long memberId;
 	private Member member = null;
@@ -64,7 +62,6 @@ public class MemberController implements Serializable {
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();
 		externalContext = facesContext.getExternalContext();
-		databaseController = (DatabaseController) applicationContext.getBean("databaseController");
 
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 

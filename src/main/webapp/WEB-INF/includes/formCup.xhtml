@@ -7,15 +7,15 @@
 	<div class="form-group">
 		<label for="name" class="col-sm-3 control-label">Nom</label>
 		<div class="col-sm-9">
-			<h:inputText id="name" required="true" a:placeholder="Nom" value="#{cupController.cup.name}"
-				class="form-control" a:autofocus="autofocus" />
+			<h:inputText id="name" a:placeholder="Nom" value="#{cupController.cup.name}"
+				class="form-control" a:autofocus="autofocus" required="true" />
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="startDate" class="col-sm-3 control-label">Date de
 			début</label>
 		<div class="col-sm-9">
-			<h:inputText a:type="date" required="true" id="startDate" class="form-control" value="#{cupController.cup.startDate}">
+			<h:inputText a:type="date" id="startDate" class="form-control" value="#{cupController.cup.startDate}" required="true">
 				<f:convertDateTime pattern="yyyy-MM-dd" />
 			</h:inputText>
 		</div>
@@ -24,7 +24,7 @@
 		<label for="endDate" class="col-sm-3 control-label">Date de
 			fin</label>
 		<div class="col-sm-9">
-			<h:inputText a:type="date" required="true" id="endDate" class="form-control" value="#{cupController.cup.endDate}">
+			<h:inputText a:type="date" id="endDate" class="form-control" value="#{cupController.cup.endDate}" required="true">
 				<f:convertDateTime pattern="yyyy-MM-dd" />
 			</h:inputText>
 		</div>
@@ -32,7 +32,7 @@
 	<div class="form-group">
 		<label for="club" class="col-sm-3 control-label">Club</label>
 		<div class="col-sm-9">
-			<h:selectOneMenu id="club" value="#{cupController.cup.club}">
+			<h:selectOneMenu id="club" value="#{cupController.cup.club}" required="true"  converter="omnifaces.SelectItemsConverter">
 				<f:selectItems value="#{cupController.clubsMap}" />
 			</h:selectOneMenu>
 		</div>
@@ -41,7 +41,7 @@
 		<label for="highJump" class="control-label col-sm-3">Saut en hauteur</label>
 		<div class="col-sm-6">
 			<div class="row">
-				<h:selectOneRadio id="highJump" value="#{cupController.cup.highJump}">
+				<h:selectOneRadio id="highJump" value="#{cupController.cup.highJump}" required="true">
 					<div class="col-sm-4">
 		   				<f:selectItem class="radio-inline" itemValue="#{true}" itemLabel="Oui"/>
 		   			</div>
@@ -56,7 +56,7 @@
 		<label for="tripleJump" class="control-label col-sm-3">Triple saut</label>
 		<div class="col-sm-6">
 			<div class="row">
-				<h:selectOneRadio id="tripleJump" value="#{cupController.cup.tripleJump}">
+				<h:selectOneRadio id="tripleJump" value="#{cupController.cup.tripleJump}" required="true">
 					<div class="col-sm-4">
 		   				<f:selectItem class="radio-inline" itemValue="#{true}" itemLabel="Oui"/>
 		   			</div>
@@ -71,7 +71,7 @@
 		<label for="freestyleStreet" class="control-label col-sm-3">Freestyle street</label>
 		<div class="col-sm-6">
 			<div class="row">
-				<h:selectOneRadio id="freestyleStreet" value="#{cupController.cup.freestyleStreet}">
+				<h:selectOneRadio id="freestyleStreet" value="#{cupController.cup.freestyleStreet}" required="true">
 					<div class="col-sm-4">
 		   				<f:selectItem class="radio-inline" itemValue="#{true}" itemLabel="Oui"/>
 		   			</div>

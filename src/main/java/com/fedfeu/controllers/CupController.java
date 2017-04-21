@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -22,10 +21,9 @@ public class CupController implements Serializable {
 	
 	private FacesContext facesContext;
 	private ExternalContext externalContext;
-	private DatabaseController databaseController;
-	
+
 	@Autowired
-    private ApplicationContext applicationContext;
+    private DatabaseController databaseController;
 	
 	private long cupId;
 	private Cup cup = null;
@@ -39,6 +37,19 @@ public class CupController implements Serializable {
 	}
 	
 	public String addCup() {
+		System.out.println(cup.getName());
+		System.out.println(cup.getStartDate());
+		System.out.println(cup.getEndDate());
+		System.out.println(cup.getClub());
+		System.out.println(cup.getAddress().getStreet());
+		System.out.println(cup.getAddress().getPostCode());
+		System.out.println(cup.getAddress().getCity());
+		System.out.println(cup.getAddress().getCountry());
+		System.out.println("h:" + cup.isHighJump());
+		System.out.println("tj:" + cup.isTripleJump());
+		System.out.println("fss:" + cup.isFreestyleStreet());
+
+		databaseController.saveCup(cup);
 		return null;
 	}
 	
@@ -50,7 +61,6 @@ public class CupController implements Serializable {
 	private void init() {
 		facesContext = FacesContext.getCurrentInstance();
 		externalContext = facesContext.getExternalContext();
-		databaseController = (DatabaseController) applicationContext.getBean("databaseController");
 		
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		
