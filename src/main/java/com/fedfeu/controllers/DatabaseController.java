@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import com.fedfeu.beans.Club;
 import com.fedfeu.beans.Cup;
 import com.fedfeu.beans.Member;
+import com.fedfeu.beans.Result;
 import com.fedfeu.database.ClubRepository;
 import com.fedfeu.database.CupRepository;
 import com.fedfeu.database.MemberRepository;
+import com.fedfeu.database.ResultRepository;
 import com.fedfeu.utils.Utils;
 
 @Service
@@ -28,6 +30,9 @@ public class DatabaseController implements Serializable {
 	
 	@Autowired
 	private MemberRepository memberRepository;
+	
+	@Autowired
+	private ResultRepository resultRepository;
 
 	public Map<String, Object> getClubsMap() {
 		Iterable<Club> clubIterable = clubRepository.findAll();
@@ -92,6 +97,10 @@ public class DatabaseController implements Serializable {
 	
 	public void saveCup(Cup cup) {
 		cupRepository.save(cup);
+	}
+	
+	public void saveResult(Result result) {
+		resultRepository.save(result);
 	}
 	
 	public Map<String, Object> getMembersOfClubMap(long clubId) {

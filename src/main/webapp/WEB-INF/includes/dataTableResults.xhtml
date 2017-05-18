@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<table id="datatable" class="table table-striped">
+		<thead>
+			<tr>
+				<th>Compétition</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Club</th>
+				<th>Discipline</th>
+				<th>Resultat</th>
+				<th>Modifier</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<th>Compétition</th>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Club</th>
+				<th>Discipline</th>
+				<th>Resultat</th>
+				<th>Modifier</th>
+			</tr>
+		</tfoot>
+		<tbody>
+			<!-- <c:forEach items="" var="member"> -->
+				<tr>
+					<td>Nancy Power Days</td>
+					<td>Pirlot</td>
+					<td>Martin</td>
+					<td>Wallabia</td>
+					<td>Hauteur</td>
+					<td>200 cm</td>
+					<td>
+						<p data-placement="top" data-toggle="tooltip" title="Edit">
+							<h:outputLink value="#{request.contextPath}/admin/modifyResult.xhtml" class="btn btn-primary btn-xs" data-title="Modifier"
+								data-toggle="modal" data-target="#edit">
+								<span class="glyphicon glyphicon-pencil" />
+							</h:outputLink>
+						</p>
+					</td>
+				</tr>
+			<!-- </c:forEach> -->
+		</tbody>
+	</table>
+
+</ui:composition>
